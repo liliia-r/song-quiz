@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div class="start-logo">
+    <app-logo></app-logo>
+  </div>
+
+  <form
+    [formGroup]="startForm"
+    (ngSubmit)="onSubmit()"
+    action=""
+    class="start-form"
+  >
+    <h2 class="start-form__title">Welcome!</h2>
+    <p class="start-form__description">
+      Please enter your name and lets start our quiz!
+    </p>
+
+    <input
+      formControlName="userName"
+      type="text"
+      class="start-form__input"
+      placeholder="Type your name here..."
+    />
+
+    <app-button></app-button>
+  </form>
+</div>

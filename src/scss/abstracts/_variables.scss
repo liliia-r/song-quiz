@@ -1,0 +1,22 @@
+// Colors
+$white-color: #ffffff;
+$black-color: #000000;
+$grey-color: #808080;
+
+$green-light: #619a65;
+$green-color: #3e6441;
+
+$red-light: #b55a5a;
+$red-color: #853838;
+
+$background-main: #12131e;
+$background-form: #1b1d31;
+
+$violet-light: #4a4d77;
+$violet: #373b62;
+
+// Linear gradients
+$default-button: linear-gradient(90deg, #7e55b2 -0.37%, #a769c3 100.37%);
+$disabled-button: linear-gradient(0deg, #808080 -0.37%, #656565 100.37%);
+$hover-button: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+  linear-gradient(90deg, #7e55b2 -0.37%, #a769c3 100.37%);

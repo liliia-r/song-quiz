@@ -1,0 +1,38 @@
+@use '../../../scss/abstracts/variables' as variable;
+@use '../../../scss/abstracts/mixins' as mixin;
+
+.btn {
+  margin: 0 auto;
+  text-transform: uppercase;
+  color: variable.$white-color;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 5px;
+  background: variable.$default-button;
+  border: none;
+  line-height: 150%;
+  padding: 2rem;
+  text-align: center;
+  z-index: 2;
+  @include mixin.flexCenter;
+
+  svg {
+    fill: variable.$grey-color;
+    margin-left: 1rem;
+  }
+
+  &:disabled {
+    background: variable.$disabled-button;
+    cursor: not-allowed;
+
+    &:hover {
+      background: variable.$disabled-button;
+      cursor: not-allowed;
+    }
+  }
+
+  &:hover {
+    background: variable.$hover-button;
+    cursor: pointer;
+  }
+}

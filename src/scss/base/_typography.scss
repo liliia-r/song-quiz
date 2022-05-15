@@ -1,0 +1,10 @@
+@use "../abstracts/variables" as variable;
+
+h2 {
+  font-family: "Prompt", sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  margin: 0;
+  line-height: 4.5rem;
+  color: variable.$white-color;
+}
