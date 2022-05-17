@@ -1,0 +1,30 @@
+@use "../../../../../scss/abstracts/mixins" as mixin;
+@use "../../../../../scss/abstracts/variables" as variable;
+
+.quiz__header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 9rem 0 3rem;
+
+  &-results {
+    @include mixin.flexCenter;
+  }
+
+  &-name {
+    font-family: "Arial";
+    margin-right: 3rem;
+    font-size: 1.6rem;
+    line-height: 150%;
+    text-transform: uppercase;
+  }
+
+  &-score {
+    color: variable.$white-color;
+    font-size: 1.6rem;
+    line-height: 150%;
+  }
+}

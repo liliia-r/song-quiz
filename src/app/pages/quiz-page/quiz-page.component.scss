@@ -1,5 +1,15 @@
+@use "../../../scss/abstracts/variables" as variable;
+
 .quiz-page {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 6rem;
+}
+
+.quiz__main {
+  width: 100%;
+  height: 80rem;
+  background-color: variable.$background-form;
 }

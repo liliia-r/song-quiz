@@ -6,6 +6,6 @@ import { LogoComponent } from './logo/logo.component';
 @NgModule({
   declarations: [ButtonComponent, LogoComponent],
   imports: [CommonModule],
-  exports: [ButtonComponent],
+  exports: [ButtonComponent, LogoComponent],
 })
 export class SharedModule {}

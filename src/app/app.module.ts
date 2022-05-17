@@ -3,25 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { StartPageComponent } from './pages/start-page/start-page.component';
-import { QuizPageComponent } from './pages/quiz-page/quiz-page.component';
-import { ButtonComponent } from './shared/button/button.component';
-import { LogoComponent } from './shared/logo/logo.component';
+import { StartPageModule } from './pages/start-page/start-page.module';
+import { QuizPageModule } from './pages/quiz-page/quiz-page.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    StartPageComponent,
-    QuizPageComponent,
-    ButtonComponent,
-    LogoComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    StartPageModule,
+    QuizPageModule,
     AppRoutingModule,
   ],
   providers: [],

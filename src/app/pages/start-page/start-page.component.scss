@@ -30,7 +30,6 @@
     color: variable.$grey-color;
     text-transform: uppercase;
     color: variable.$white-color;
-    opacity: 0.5;
     width: 73rem;
     height: 5.5rem;
     background-color: transparent;
@@ -40,6 +39,11 @@
     outline: 1px solid transparent;
     margin-bottom: 2rem;
     transition: border-color ease-in-out 0.3s;
+
+    &::placeholder {
+      color: variable.$white-color;
+      opacity: 0.5;
+    }
 
     &:hover {
       border-bottom: 1px solid grey;

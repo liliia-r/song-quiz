@@ -1,19 +1,18 @@
-import { SongsService } from './../../services/songs.service';
-import { Observable } from 'rxjs';
+import { SongsService } from './../../../../services/songs.service';
 import { Component, OnInit } from '@angular/core';
 import { Songs } from 'src/app/models/song.interface';
 
 @Component({
-  selector: 'app-quiz-page',
-  templateUrl: './quiz-page.component.html',
-  styleUrls: ['./quiz-page.component.scss'],
+  selector: 'app-progress-bar',
+  templateUrl: './progress-bar.component.html',
+  styleUrls: ['./progress-bar.component.scss'],
 })
-export class QuizPageComponent implements OnInit {
+export class ProgressBarComponent implements OnInit {
   songsData!: Songs[];
 
   constructor(private songsService: SongsService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.songsService.getData().subscribe((res: any) => {
       this.songsData = res;
       console.log(this.songsData);
