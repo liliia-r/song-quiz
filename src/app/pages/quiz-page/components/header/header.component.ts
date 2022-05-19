@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   userName!: Observable<string>;
+  score: number = 0;
 
   constructor(private userService: UserService) {
     this.userName = this.userService.getName();

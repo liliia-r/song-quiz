@@ -1,0 +1,48 @@
+<div class="quiz-part">
+  <div class="quiz-part__left">
+    <h2 class="title">{{ genreObj["genre"] | titlecase }} song</h2>
+    <p class="description">
+      Listen to the audio and guess what song is it from the list
+    </p>
+
+    <div class="audioplayer">
+      <audio
+        class="audio-item"
+        controls
+        src="https://levi9-song-quiz.herokuapp.com/api/{{ correctSong.audio }}"
+      ></audio>
+      <!-- <div class="button-bg">
+      <app-audio-player-button></app-audio-player-button>
+    </div> -->
+
+      <!-- <div class="audio__wrapper">
+      <app-audio-player-progress></app-audio-player-progress>
+    </div> -->
+    </div>
+
+    <div
+      class="question"
+      *ngFor="let song of genreObj.data; let i = index"
+      (click)="selectSong(song, i)"
+    >
+      <div class="question__container">
+        <div class="question__check"></div>
+        <p class="question__text">
+          {{ "0" + (i + 1) + " : " + song.name + " - " + song.songTitle }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-part__right">
+    <app-song-part
+      [genreObj]="genreObj.data[checkedIndex]"
+      *ngIf="genreObj.data[checkedIndex]; else unionImg"
+    ></app-song-part>
+    <ng-template #unionImg>
+      <div class="image__wrapper">
+        <img src="../../../../../assets/union.png" alt="quiz-image" />
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="song__container">
+  <div class="song__title">
+    <h2 class="song__title-content">
+      {{ genreObj.name }} - {{ genreObj.songTitle }}
+    </h2>
+  </div>
+  <div class="song__image">
+    <img
+      src="https://levi9-song-quiz.herokuapp.com/api/{{ genreObj.image }}"
+      alt="singer"
+      class="song__image-content"
+    />
+  </div>
+
+  <div class="audioplayer__right">
+    <app-audio-player-button></app-audio-player-button>
+    <app-audio-player-progress></app-audio-player-progress>
+  </div>
+
+  <div class="song__description">
+    <p class="song__description-content">{{ genreObj.description }}</p>
+  </div>
+</div>

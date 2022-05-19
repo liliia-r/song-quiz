@@ -9,8 +9,8 @@
     action=""
     class="start-form"
   >
-    <h2 class="start-form__title">Welcome!</h2>
-    <p class="start-form__description">
+    <h2 class="start-form__title title">Welcome!</h2>
+    <p class="start-form__description description">
       Please enter your name and lets start our quiz!
     </p>
 
@@ -21,6 +21,6 @@
       placeholder="Type your name here..."
     />
 
-    <app-button [disabled]="startForm.invalid"></app-button>
+    <app-button [disabled]="startForm.invalid">start quiz</app-button>
   </form>
 </div>

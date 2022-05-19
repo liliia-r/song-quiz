@@ -15,7 +15,6 @@ export class ProgressBarComponent implements OnInit {
   ngOnInit(): void {
     this.songsService.getData().subscribe((res: any) => {
       this.songsData = res;
-      console.log(this.songsData);
     });
   }
 }

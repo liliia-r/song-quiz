@@ -13,3 +13,34 @@
   height: 80rem;
   background-color: variable.$background-form;
 }
+
+.quiz__footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button-bg {
+  width: 9rem;
+  height: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background: linear-gradient(
+    148.42deg,
+    #ec1919 -0.53%,
+    #d1c234 28.02%,
+    #d134a5 60.47%,
+    #3734d1 90.32%,
+    #23b632 124.06%
+  );
+  border-radius: 5px;
+  outline: none;
+}
+
+.audio__wrapper {
+  width: 66%;
+  margin-top: 2rem;
+}

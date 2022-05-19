@@ -17,10 +17,10 @@ export class SongsService {
 
   constructor(private http: HttpClient) {}
 
-  getData(): any {
+  getData(): Observable<Songs> {
     return (this.audioData$ = this.http.get<Songs[]>(this.ROOT_URL).pipe(
       tap((data: any) => {
-        this.audioData$ = data;
+        this._audioData$.next(data);
       })
     ));
   }
