@@ -1,3 +1,4 @@
+import { ScoreService } from './../../../../services/score.service';
 import { UserService } from './../../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,12 +9,18 @@ import { Observable } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  userName!: Observable<string>;
-  score: number = 0;
+  userName!: string;
 
-  constructor(private userService: UserService) {
+  score!: number;
+
+  constructor(
+    private userService: UserService,
+    public scoreService: ScoreService
+  ) {}
+
+  ngOnInit(): void {
     this.userName = this.userService.getName();
-  }
 
-  ngOnInit(): void {}
+    this.score = this.scoreService.getScore();
+  }
 }

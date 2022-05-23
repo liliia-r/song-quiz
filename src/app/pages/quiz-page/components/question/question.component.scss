@@ -1,36 +1,128 @@
 @use "../../../../../scss/abstracts/variables" as variable;
+@use "../../../../../scss/abstracts/mixins" as mixin;
 
 .quiz-part {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
+  padding: 0 6rem 2rem;
+
+  @include mixin.respond(tab-land) {
+    flex-direction: column;
+    padding: 0 4rem;
+  }
+  @include mixin.respond(tab-port) {
+    padding: 0 3rem;
+  }
+  @include mixin.respond(big-phone) {
+    padding: 0 2rem;
+  }
+
+  &__left {
+    width: 41%;
+    height: 100%;
+    padding-top: 4rem;
+    @include mixin.respond(tab-land) {
+      width: 100%;
+      padding-top: 1rem;
+    }
+    @include mixin.respond(tab-port) {
+      // font-size: 1.1rem;
+      // width: 15rem;
+      // height: 4rem;
+    }
+    @include mixin.respond(phone) {
+      // font-size: 0.9rem;
+      // width: 14rem;
+      // height: 3rem;
+    }
+  }
+
+  &__right {
+    flex: 0 0 auto;
+    width: 56%;
+    padding-top: 4rem;
+    justify-content: space-between;
+    @include mixin.respond(tab-land) {
+      width: 100%;
+      padding-top: 2rem;
+    }
+  }
 }
 
-.quiz-part__left {
-  width: 40%;
-  height: 100%;
-  padding-left: 6rem;
+.title {
+  margin-bottom: 2rem;
+  @include mixin.respond(tab-land) {
+    text-align: center;
+  }
+  @include mixin.respond(big-phone) {
+    margin-bottom: 1rem;
+  }
 }
 
-.quiz-part__right {
-  width: 58%;
-  padding-right: 6rem;
+.description {
+  margin-bottom: 2rem;
+  @include mixin.respond(tab-land) {
+    text-align: center;
+  }
+  @include mixin.respond(tab) {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 }
 
 .audioplayer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 46rem;
   height: 15.4rem;
   background: variable.$violet-light;
   padding: 2rem;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
+  @include mixin.respond(big-phone) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+  }
+}
+
+.button-bg {
+  width: 11rem;
+  height: 11rem;
+  margin-right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-size: cover;
+  border-radius: 5px;
+  outline: none;
+
+  &__main {
+    background: linear-gradient(
+      148.42deg,
+      #ec1919 -0.53%,
+      #d1c234 28.02%,
+      #d134a5 60.47%,
+      #3734d1 90.32%,
+      #23b632 124.06%
+    );
+  }
+}
+
+.audio-item {
+  width: 85%;
+  @include mixin.respond(big-phone) {
+    margin-top: 2rem;
+    width: 100%;
+  }
 }
 
 .question {
-  width: 46rem;
   padding: 0 2rem;
   height: 7rem;
   border: 0.1rem solid variable.$violet-light;
@@ -67,43 +159,55 @@
     color: variable.$white-color;
     font-weight: 400;
     opacity: 0.7;
+    @include mixin.respond(big-phone) {
+      font-size: 1rem;
+    }
+    @include mixin.respond(phone) {
+      font-size: 0.8rem;
+    }
   }
-}
 
-.error,
-.error:hover {
-  border: 1px solid variable.$red-light;
-  background-color: variable.$red-color;
-
-  .question__check {
+  &__error,
+  &__error:hover {
     border: 1px solid variable.$red-light;
-    background-image: url("../../../../../assets/error.svg");
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: variable.$red-color;
+
+    .question__check {
+      border: 1px solid variable.$red-light;
+      background-image: url("../../../../../assets/error.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
-}
 
-.correct,
-.correct:hover {
-  border: 1px solid variable.$green-light;
-  background-color: variable.$green-color;
-
-  .question__check {
+  &__correct,
+  &__correct:hover {
     border: 1px solid variable.$green-light;
-    background-image: url("../../../../../assets/correct.svg");
-    background-repeat: no-repeat;
-    background-position: center;
+    background-color: variable.$green-color;
+
+    .question__check {
+      border: 1px solid variable.$green-light;
+      background-image: url("../../../../../assets/correct.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
   }
 }
 
 .image__wrapper {
-  position: relative;
+  height: 60rem;
+  width: 100%;
+  @include mixin.respond(tab-land) {
+    display: none;
+  }
 
   img {
-    width: 100%;
     position: absolute;
-    right: -6rem;
-    top: 1rem;
-    object-fit: cover;
+    display: block;
+    width: 60rem;
+
+    right: -9rem;
+    bottom: -7rem;
+    transform: translate(-15%, -15%);
   }
 }

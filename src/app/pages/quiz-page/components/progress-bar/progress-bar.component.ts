@@ -1,6 +1,7 @@
+import { ScoreService } from './../../../../services/score.service';
 import { SongsService } from './../../../../services/songs.service';
-import { Component, OnInit } from '@angular/core';
-import { Songs } from 'src/app/models/song.interface';
+import { Component, OnInit, Input } from '@angular/core';
+import { Songs } from '../../../../models/songs.interface';
 
 @Component({
   selector: 'app-progress-bar',
@@ -8,13 +9,21 @@ import { Songs } from 'src/app/models/song.interface';
   styleUrls: ['./progress-bar.component.scss'],
 })
 export class ProgressBarComponent implements OnInit {
-  songsData!: Songs[];
+  @Input() songsData!: Songs[];
+  @Input() currentGenre!: Songs;
+  @Input() genreIndex!: number;
 
-  constructor(private songsService: SongsService) {}
+  constructor(
+    private songsService: SongsService,
+    public scoreService: ScoreService
+  ) {}
 
-  ngOnInit(): void {
-    this.songsService.getData().subscribe((res: any) => {
-      this.songsData = res;
+  ngOnInit(): void {}
+
+  changeGenreColor(i: number) {
+    this.songsData.forEach((genre) => {
+      if (genre) {
+      }
     });
   }
 }

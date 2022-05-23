@@ -6,7 +6,7 @@
   text-transform: uppercase;
   color: variable.$white-color;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1.6rem;
   border-radius: 5px;
   background: variable.$default-button;
   border: none;
@@ -14,11 +14,39 @@
   padding: 2rem;
   text-align: center;
   z-index: 2;
+  margin-bottom: 1rem;
   @include mixin.flexCenter;
+  @include mixin.respond(tab-land) {
+    font-size: 1.3rem;
+    height: 5rem;
+  }
+  @include mixin.respond(tab-port) {
+    font-size: 1.1rem;
+    width: 16rem;
+    height: 4rem;
+  }
+  @include mixin.respond(phone) {
+    font-size: 0.9rem;
+    width: 15rem;
+    height: 3rem;
+  }
 
   svg {
     fill: variable.$grey-color;
     margin-left: 1rem;
+
+    @include mixin.respond(tab-land) {
+      width: 1.8rem;
+      margin-left: 0.7rem;
+    }
+    @include mixin.respond(tab-port) {
+      width: 1.6rem;
+      margin-left: 0.5rem;
+    }
+    @include mixin.respond(phone) {
+      width: 1.4rem;
+      margin-left: 0.5rem;
+    }
   }
 
   &:disabled {

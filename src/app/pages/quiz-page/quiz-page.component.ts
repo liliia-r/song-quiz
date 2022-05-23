@@ -1,54 +1,68 @@
 import { ScoreService } from './../../services/score.service';
-import { StateService } from './../../services/state.service';
 import { AudioService } from './../../services/audio.service';
 import { SongsService } from './../../services/songs.service';
-// import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import {
   Component,
   OnInit,
   OnChanges,
+  OnDestroy,
   SimpleChanges,
   Input,
 } from '@angular/core';
-import { Songs, Song } from 'src/app/models/song.interface';
+import { Songs } from '../../models/songs.interface';
+import { Song } from '../../models/song.interface';
 
 @Component({
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.scss'],
 })
-export class QuizPageComponent implements OnInit {
-  idx: number = 0;
+export class QuizPageComponent implements OnInit, OnChanges, OnDestroy {
+  isLoading$!: Observable<boolean>;
+
   songsData!: Songs[];
-  genreObj!: Songs;
+  currentGenre!: Songs;
+  genreIndex: number = 0;
 
-  // checkedIndex!: number;
-  // correctIndex!: number;
+  correctSong!: Song;
 
-  // correctSong!: Song;
+  checkedSong!: Song | null;
 
-  // isCorrect!: boolean;
-  // isQuizCompleted!: boolean;
-  // state: any = {};
+  subscription!: Subscription;
 
   constructor(
     private songsService: SongsService,
     private audioService: AudioService,
-    private stateService: StateService,
-    private scoreService: ScoreService
+    private router: Router,
+    public scoreService: ScoreService
   ) {}
 
+  ngOnChanges() {}
+
   ngOnInit() {
-    this.songsService.getData().subscribe((res: any) => {
+    this.isLoading$ = this.songsService.isLoading$;
+
+    this.subscription = this.songsService.getData().subscribe((res: any) => {
       this.songsData = res;
-      this.genreObj = this.songsData[this.idx];
+      this.currentGenre = this.songsData[this.genreIndex];
     });
   }
 
-  nextIndex() {
-    if (this.idx < this.songsData.length - 1) {
-      this.idx += 1;
-      this.genreObj = this.songsData[this.idx];
+  getNextQuestionIndex() {
+    if (this.genreIndex < this.songsData.length - 1) {
+      this.genreIndex += 1;
+      this.currentGenre = this.songsData[this.genreIndex];
+      this.scoreService.setIsCorrectAnswerSelected(false);
     }
+  }
+
+  finishQuiz() {
+    this.router.navigate(['/finish']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

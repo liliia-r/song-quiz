@@ -1,0 +1,35 @@
+<div class="summary__wrapper">
+  <div class="finish-logo">
+    <app-logo></app-logo>
+  </div>
+
+  <div class="summary">
+    <div class="summary__img-wrapper">
+      <img
+        class="summary__img"
+        src="../../../assets/union-small.png"
+        alt="summary image"
+      />
+    </div>
+    <div class="summary__score">{{ sum }}</div>
+
+    <ng-container *ngIf="scoreService.getScore() !== 12; else defaultBlock">
+      <h1 class="summary__title">
+        {{ userService.getName() | uppercase }}, you can do better, try again!
+      </h1>
+      <p class="summary__subtitle">You've got {{ sum }} out of 12 points.</p>
+    </ng-container>
+    <ng-template #defaultBlock>
+      <h1 class="summary__title">
+        {{ userService.getName() | uppercase }}, did so great!
+      </h1>
+      <p class="summary__subtitle">
+        You've got {{ sum }} out of 12 points. You are definitely a music lover!
+      </p>
+    </ng-template>
+
+    <div>
+      <app-button (click)="tryAgain()">try again</app-button>
+    </div>
+  </div>
+</div>

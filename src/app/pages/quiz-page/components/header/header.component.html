@@ -1,9 +1,7 @@
-<div class="wrapper">
-  <header class="quiz__header">
-    <app-logo></app-logo>
-    <div class="quiz__header-results">
-      <h2 class="quiz__header-name">{{ userName | async }}</h2>
-      <p class="quiz__header-score">Your Score: {{ score }}</p>
-    </div>
-  </header>
-</div>
+<header class="quiz__header">
+  <app-logo></app-logo>
+  <div class="quiz__header-results">
+    <h2 class="quiz__header-name">{{ userName }}</h2>
+    <p class="quiz__header-score">Your Score: {{ scoreService.getScore() }}</p>
+  </div>
+</header>

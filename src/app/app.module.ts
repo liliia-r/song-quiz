@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { StartPageModule } from './pages/start-page/start-page.module';
 import { QuizPageModule } from './pages/quiz-page/quiz-page.module';
+import { FinishPageModule } from './pages/finish-page/finish-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { QuizPageModule } from './pages/quiz-page/quiz-page.module';
     HttpClientModule,
     StartPageModule,
     QuizPageModule,
+    FinishPageModule,
     AppRoutingModule,
   ],
   providers: [],

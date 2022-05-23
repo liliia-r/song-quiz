@@ -1,7 +1,42 @@
 <div class="progress-bar">
-  <div class="progress-bar__line"></div>
+  <div
+    class="progress-bar__line"
+    [ngClass]="{
+      'progress-bar__line--default': currentGenre.genre === 'jazz',
+
+      'progress-bar__line--correct1':
+        currentGenre.genre === 'jazz' &&
+        scoreService.getIsCorrectAnswerSelected() === true,
+
+      'progress-bar__line--active1': currentGenre.genre === 'rock',
+
+      'progress-bar__line--correct2':
+        currentGenre.genre === 'rock' &&
+        scoreService.getIsCorrectAnswerSelected() === true,
+
+      'progress-bar__line--active2': currentGenre.genre === 'pop',
+
+      'progress-bar__line--correct3':
+        currentGenre.genre === 'pop' &&
+        scoreService.getIsCorrectAnswerSelected() === true,
+
+      'progress-bar__line--active3': currentGenre.genre === 'soundtrack',
+
+      'progress-bar__line--correct4':
+        currentGenre.genre === 'soundtrack' &&
+        scoreService.getIsCorrectAnswerSelected() === true
+    }"
+  ></div>
   <ul class="progress-bar__list">
-    <li class="progress-bar__item" *ngFor="let genreData of songsData">
+    <li
+      class="progress-bar__item"
+      *ngFor="let genreData of songsData; let i = index"
+      [ngClass]="{
+        'progress-bar__item--active': genreIndex === i,
+        'progress-bar__item--correct':
+          genreIndex === i && scoreService.getIsCorrectAnswerSelected() === true
+      }"
+    >
       <p>{{ genreData.genre }}</p>
 
       <svg

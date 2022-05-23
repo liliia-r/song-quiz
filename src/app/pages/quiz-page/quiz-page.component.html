@@ -1,18 +1,33 @@
-<div class="quiz-page">
-  <app-header></app-header>
+<app-loader *ngIf="isLoading$ | async"></app-loader>
 
-  <main class="quiz__main">
-    <app-progress-bar> </app-progress-bar>
+<div class="wrapper">
+  <div class="quiz-page" *ngIf="songsData">
+    <app-header></app-header>
 
-    <app-question [genreObj]="genreObj"></app-question>
-  </main>
+    <main class="quiz__main">
+      <app-progress-bar
+        [songsData]="songsData"
+        [currentGenre]="currentGenre"
+        [genreIndex]="genreIndex"
+      >
+      </app-progress-bar>
 
-  <footer class="quiz__footer">
-    <app-button *ngIf="songsData.length - 1 !== idx" (click)="nextIndex()"
-      >next question</app-button
-    >
-    <app-button *ngIf="songsData.length - 1 === idx" (click)="nextIndex()"
-      >see my score</app-button
-    >
-  </footer>
+      <app-question [currentGenre]="currentGenre"> </app-question>
+    </main>
+
+    <footer class="quiz__footer">
+      <app-button
+        *ngIf="songsData.length - 1 !== genreIndex"
+        (click)="getNextQuestionIndex()"
+        [disabled]="scoreService.getIsCorrectAnswerSelected() === false"
+        >next question</app-button
+      >
+      <app-button
+        *ngIf="songsData.length - 1 === genreIndex"
+        (click)="finishQuiz()"
+        [disabled]="scoreService.getIsCorrectAnswerSelected() === false"
+        >see my score</app-button
+      >
+    </footer>
+  </div>
 </div>

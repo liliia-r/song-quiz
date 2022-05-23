@@ -1,26 +1,24 @@
-<div class="wrapper">
-  <div class="start-logo">
-    <app-logo></app-logo>
-  </div>
-
-  <form
-    [formGroup]="startForm"
-    (ngSubmit)="onSubmit()"
-    action=""
-    class="start-form"
-  >
-    <h2 class="start-form__title title">Welcome!</h2>
-    <p class="start-form__description description">
-      Please enter your name and lets start our quiz!
-    </p>
-
-    <input
-      formControlName="userName"
-      type="text"
-      class="start-form__input"
-      placeholder="Type your name here..."
-    />
-
-    <app-button [disabled]="startForm.invalid">start quiz</app-button>
-  </form>
+<div class="start-logo">
+  <app-logo></app-logo>
 </div>
+
+<form
+  [formGroup]="startForm"
+  (ngSubmit)="onSubmit()"
+  action=""
+  class="start-form"
+>
+  <h2 class="start-form__title title">Welcome!</h2>
+  <p class="start-form__description description">
+    Please enter your name and lets start our quiz!
+  </p>
+
+  <input
+    formControlName="userName"
+    type="text"
+    class="start-form__input"
+    placeholder="Type your name here..."
+  />
+
+  <app-button [disabled]="startForm.invalid">start quiz</app-button>
+</form>

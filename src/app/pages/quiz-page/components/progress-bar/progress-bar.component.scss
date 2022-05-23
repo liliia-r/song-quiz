@@ -1,4 +1,5 @@
 @use "../../../../../scss/abstracts/variables" as variable;
+@use "../../../../../scss/abstracts/mixins" as mixin;
 
 .progress-bar {
   height: 4.7rem;
@@ -12,19 +13,87 @@
   &__line {
     width: 100%;
     height: 0.5rem;
-    background: linear-gradient(
-        270deg,
-        rgba(255, 255, 255, 0) 75%,
-        #ffffff 87.86%
-      ),
-      rgba(255, 255, 255, 0.2);
+
+    &--default {
+      background: linear-gradient(
+          270deg,
+          rgba(255, 255, 255, 0) 75%,
+          #ffffff 87.86%
+        ),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    &--correct1 {
+      background: linear-gradient(
+          270.05deg,
+          rgba(126, 85, 179, 0) 75%,
+          #a769c4 85%,
+          #a769c4 100%
+        ),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    &--active1 {
+      background: linear-gradient(
+          270.05deg,
+          rgba(126, 85, 179, 0) 65%,
+          #a769c4 85%,
+          #a769c4 100%
+        ),
+        linear-gradient(270deg, rgba(255, 255, 255, 0) 48.96%, #ffffff 60%),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    &--correct2 {
+      background: linear-gradient(
+          270.05deg,
+          rgba(126, 85, 179, 0) 50%,
+          #a769c4 64.09%,
+          #a769c4 100%
+        ),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    &--active2 {
+      background: linear-gradient(
+          270.05deg,
+          rgba(126, 85, 179, 0) 30%,
+          #a769c4 75%,
+          #a769c4 100%
+        ),
+        linear-gradient(270deg, rgba(255, 255, 255, 0) 25%, #ffffff 35%),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    &--correct3 {
+      background: linear-gradient(
+          270.05deg,
+          rgba(126, 85, 179, 0) 10%,
+          #a769c4 18%,
+          #a769c4 100%
+        ),
+        rgba(255, 255, 255, 0.2);
+    }
+
+    &--active3 {
+      background: linear-gradient(
+          270.05deg,
+          rgba(126, 85, 179, 0) 10%,
+          #a769c4 30%,
+          #a769c4 100%
+        ),
+        linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #ffffff 0%);
+    }
+
+    &--correct4 {
+      background: #a769c4;
+    }
   }
 
   &__list {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    gap: 21.3rem;
     align-items: center;
     font-family: "Arial";
     font-style: normal;
@@ -33,20 +102,53 @@
     line-height: 150%;
     text-transform: uppercase;
     padding: 0 6rem;
+
+    @include mixin.respond(tab-land) {
+      padding: 0 4rem;
+    }
+    @include mixin.respond(tab-port) {
+      font-size: 1.1rem;
+      padding: 0 3rem;
+    }
+    @include mixin.respond(phone) {
+      font-size: 0.9rem;
+      padding: 0 2rem;
+    }
   }
 
   &__item {
-    &:not(:last-of-type) {
-      width: 25%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: variable.$grey-color;
+
+    &--active {
+      color: variable.$white-color;
+
+      .progress-bar__arrow--color {
+        fill: variable.$white-color;
+      }
     }
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    &--correct {
+      color: #a769c4;
+      .progress-bar__arrow--color {
+        fill: #a769c4;
+      }
+    }
 
-    p {
-      display: inline-block;
-      color: variable.$grey-color;
+    width: 35%;
+    @include mixin.respond(tab-port) {
+      justify-content: space-around;
+    }
+    &:first-of-type {
+      justify-content: space-between;
+      width: 15%;
+    }
+
+    &:last-of-type {
+      justify-content: flex-end;
+      width: 15%;
     }
 
     &:last-child {
@@ -57,10 +159,22 @@
   }
 
   &__arrow {
+    @include mixin.respond(tab-land) {
+      width: 1.5rem;
+    }
+    @include mixin.respond(tab-port) {
+      width: 1.3rem;
+    }
+    @include mixin.respond(phone) {
+      width: 1.2rem;
+    }
+
+    &:not(:last-of-type) {
+      padding-left: 15%;
+    }
+
     &--color {
       fill: variable.$grey-color;
-      // color: #dca1f8;
-      // fill: #dca1f8;
     }
   }
 }

@@ -1,0 +1,108 @@
+@use '../../../scss/abstracts/variables' as variable;
+@use '../../../scss/abstracts/mixins' as mixin;
+
+.summary__wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.summary {
+  @include mixin.absCenter;
+  max-width: 110rem;
+  width: 100%;
+  z-index: 2;
+  background-color: variable.$violet;
+  padding: 9rem 0;
+  border-radius: 1rem;
+  text-align: center;
+
+  @include mixin.respond(tab-land) {
+    width: 90rem;
+    padding: 6rem 0;
+  }
+  @include mixin.respond(tab-port) {
+    width: 75rem;
+    padding: 5rem 0;
+  }
+  @include mixin.respond(tab) {
+    width: 65rem;
+    padding: 5rem 0;
+  }
+  @include mixin.respond(big-phone) {
+    top: 65%;
+    width: 40rem;
+    padding: 4rem 0;
+  }
+  @include mixin.respond(phone) {
+    width: 30rem;
+    padding: 3rem 0;
+  }
+
+  &__img-wrapper {
+    position: absolute;
+    width: 30rem;
+    height: 30rem;
+    left: 50%;
+    top: -7%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  &__img {
+  }
+
+  &__score {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: -10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 50%;
+    color: variable.$white-color;
+    background: variable.$violet-light;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 1.5rem;
+  }
+
+  &__title {
+    font-family: "Prompt";
+    font-style: normal;
+    color: variable.$white-color;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 4.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-family: "Arial";
+    font-style: normal;
+    color: variable.$white-color;
+    opacity: 0.7;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  &__button {
+    margin: 0 auto;
+    width: 15.78rem;
+    height: 6.4rem;
+  }
+}
+
+.finish-logo {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}

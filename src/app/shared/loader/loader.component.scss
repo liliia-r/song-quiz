@@ -1,0 +1,32 @@
+:host {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 30;
+}
+
+.loader {
+  animation: rotate 2s infinite ease;
+  margin: 6rem auto;
+  width: 10rem;
+  height: 10rem;
+  border: 4px solid #cce6f4;
+  border-top-color: #003844;
+  border-right-color: #ffb100;
+  border-bottom-color: #006c67;
+  border-left-color: #f194b4;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}

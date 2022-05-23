@@ -5,17 +5,63 @@
   width: 110rem;
   background: variable.$background-form;
   z-index: 2;
-  padding: 9rem 18.5rem;
+  padding: 9rem 18rem;
   border-radius: 1rem;
   text-align: center;
   @include mixin.absCenter;
+  @include mixin.respond(tab-land) {
+    width: 90rem;
+    padding: 6rem 0;
+  }
+  @include mixin.respond(tab-port) {
+    width: 75rem;
+    padding: 5rem 0;
+  }
+  @include mixin.respond(tab) {
+    width: 65rem;
+    padding: 5rem 0;
+  }
+  @include mixin.respond(big-phone) {
+    width: 40rem;
+    padding: 5rem 0;
+  }
+  @include mixin.respond(phone) {
+    width: 30rem;
+    padding: 0.8rem 0;
+  }
 
   &__title {
     margin-bottom: 1rem;
+
+    @include mixin.respond(tab-land) {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+    @include mixin.respond(tab-port) {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+    }
+    @include mixin.respond(phone) {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
   }
 
   &__description {
     margin-bottom: 9rem;
+
+    @include mixin.respond(tab-land) {
+      font-size: 1.2rem;
+      margin-bottom: 5rem;
+    }
+    @include mixin.respond(tab-port) {
+      font-size: 1rem;
+      margin-bottom: 4rem;
+    }
+    @include mixin.respond(phone) {
+      font-size: 0.8rem;
+      margin-bottom: 3rem;
+    }
   }
 
   &__input {
@@ -34,6 +80,21 @@
     outline: 1px solid transparent;
     margin-bottom: 2rem;
     transition: border-color ease-in-out 0.3s;
+    @include mixin.respond(tab-land) {
+      font-size: 1.5rem;
+      width: 54rem;
+      height: 3.5rem;
+    }
+    @include mixin.respond(tab-port) {
+      font-size: 1.2rem;
+      width: 35rem;
+      height: 3rem;
+    }
+    @include mixin.respond(phone) {
+      font-size: 1rem;
+      width: 20rem;
+      height: 2.5rem;
+    }
 
     &::placeholder {
       color: variable.$white-color;
@@ -54,7 +115,7 @@
 
 .start-logo {
   position: absolute;
-  top: 9rem;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
 }

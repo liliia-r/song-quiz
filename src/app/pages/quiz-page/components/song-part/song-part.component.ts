@@ -1,3 +1,4 @@
+import { Song } from '../../../../models/song.interface';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./song-part.component.scss'],
 })
 export class SongPartComponent implements OnInit {
-  @Input() genreObj!: any;
+  @Input() currentGenre!: Song;
 
   constructor() {}
 

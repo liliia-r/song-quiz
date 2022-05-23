@@ -1,29 +1,46 @@
 <div class="quiz-part">
   <div class="quiz-part__left">
-    <h2 class="title">{{ genreObj["genre"] | titlecase }} song</h2>
+    <h2 class="title">{{ currentGenre.genre | titlecase }} song</h2>
     <p class="description">
       Listen to the audio and guess what song is it from the list
     </p>
 
     <div class="audioplayer">
+      <div
+        class="button-bg"
+        *ngIf="scoreService.getIsCorrectAnswerSelected(); else linearGradient"
+        [ngStyle]="{
+          'background-image': scoreService.getIsCorrectAnswerSelected()
+            ? 'url(' + ROOT_URL + correctSong.image + ')'
+            : 'none'
+        }"
+      >
+        <!-- <app-audio-player-button></app-audio-player-button> -->
+      </div>
+      <ng-template #linearGradient
+        ><div class="button-bg button-bg__main"></div
+      ></ng-template>
+
       <audio
         class="audio-item"
         controls
-        src="https://levi9-song-quiz.herokuapp.com/api/{{ correctSong.audio }}"
+        src="{{ ROOT_URL }}{{ correctSong.audio }}"
       ></audio>
-      <!-- <div class="button-bg">
-      <app-audio-player-button></app-audio-player-button>
-    </div> -->
 
       <!-- <div class="audio__wrapper">
-      <app-audio-player-progress></app-audio-player-progress>
-    </div> -->
+        <app-audio-player-progress></app-audio-player-progress>
+      </div> -->
     </div>
 
     <div
       class="question"
-      *ngFor="let song of genreObj.data; let i = index"
-      (click)="selectSong(song, i)"
+      *ngFor="let song of currentGenre.data; let i = index"
+      (click)="selectSong(song.id, i)"
+      [ngClass]="{
+        question__correct:
+          clickedSongsIds.includes(song.id) && song.id === correctSong.id,
+        question__error: clickedSongsIds.includes(song.id)
+      }"
     >
       <div class="question__container">
         <div class="question__check"></div>
@@ -36,9 +53,10 @@
 
   <div class="quiz-part__right">
     <app-song-part
-      [genreObj]="genreObj.data[checkedIndex]"
-      *ngIf="genreObj.data[checkedIndex]; else unionImg"
+      *ngIf="currentGenre.data[checkedSongIndex]; else unionImg"
+      [currentGenre]="currentGenre.data[checkedSongIndex]"
     ></app-song-part>
+
     <ng-template #unionImg>
       <div class="image__wrapper">
         <img src="../../../../../assets/union.png" alt="quiz-image" />
