@@ -38,4 +38,8 @@ export class ScoreService {
   getClickedSongsCount() {
     return this.clickedSongsCount;
   }
+
+  clearClickedSongsCount() {
+    this.clickedSongsCount = 0;
+  }
 }

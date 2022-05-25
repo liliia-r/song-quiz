@@ -49,11 +49,14 @@ export class QuestionComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.checkedSongIndex = -1;
     this.getCorrectSong();
+    this.clickedSongsCount = 0;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.scoreService.setIsCorrectAnswerSelected(false);
+  }
 
-  getCorrectSong(): any {
+  getCorrectSong() {
     const correctSongIndex = Math.floor(Math.random() * DEFAULT_COUNT_SONGS);
     this.correctSong = this.currentGenre.data[correctSongIndex];
   }
@@ -70,7 +73,7 @@ export class QuestionComponent implements OnInit, OnChanges {
     }
     this.clickedSongsIds.push(id);
 
-    console.log(this.clickedSongsIds);
+    console.log(this.clickedSongsCount);
 
     if (id === this.correctSong.id) {
       this.scorePoints = this.points[this.clickedSongsCount];
@@ -78,12 +81,10 @@ export class QuestionComponent implements OnInit, OnChanges {
       this.scoreService.setScore(this.scorePoints);
 
       this.scoreService.setIsCorrectAnswerSelected(true);
-      this.clickedSongsCount = 0;
+
       return;
     }
 
     this.scoreService.setIsCorrectAnswerSelected(false);
   }
 }
-
-// TODO  переменная сколько было нажато песен, обнулять, когда переходим на следующий вопрос

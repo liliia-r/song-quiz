@@ -3,14 +3,7 @@ import { AudioService } from './../../services/audio.service';
 import { SongsService } from './../../services/songs.service';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  Input,
-} from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
 import { Songs } from '../../models/songs.interface';
 import { Song } from '../../models/song.interface';
 
@@ -19,7 +12,7 @@ import { Song } from '../../models/song.interface';
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.scss'],
 })
-export class QuizPageComponent implements OnInit, OnChanges, OnDestroy {
+export class QuizPageComponent implements OnInit, OnDestroy {
   isLoading$!: Observable<boolean>;
 
   songsData!: Songs[];
@@ -38,8 +31,6 @@ export class QuizPageComponent implements OnInit, OnChanges, OnDestroy {
     private router: Router,
     public scoreService: ScoreService
   ) {}
-
-  ngOnChanges() {}
 
   ngOnInit() {
     this.isLoading$ = this.songsService.isLoading$;
