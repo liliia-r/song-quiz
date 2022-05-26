@@ -6,7 +6,7 @@
   </div>
   <div class="song__image">
     <img
-      src="https://levi9-song-quiz.herokuapp.com/api/{{ currentGenre.image }}"
+      src="{{ ROOT_URL }}{{ currentGenre.image }}"
       alt="singer"
       class="song__image-content"
     />
@@ -18,21 +18,10 @@
         <app-audio-player-button></app-audio-player-button>
       </div>
       <div class="play-progress-wrap">
-        <app-audio-player-progress></app-audio-player-progress>
+        <app-audio-player-progress [songUrl]="checkedSongUrl">
+        </app-audio-player-progress>
       </div>
     </div>
-    <!-- <div class="song__audio">
-    <audio
-    #audioItemDescription
-      class="song__audio-content"
-      controls
-      src="https://levi9-song-quiz.herokuapp.com/api/{{ currentGenre.audio }}"
-      (loadeddata)="audioService.setAudio(audioItemDescription)"
-    (timeupdate)="audioService.updateCurrentTime()"
-    (timeupdate)="audioService.updateTimeRange()"
-    (ended)="audioService.pauseAudio()"
-    ></audio>
-  </div> -->
   </div>
 
   <div class="song__description">

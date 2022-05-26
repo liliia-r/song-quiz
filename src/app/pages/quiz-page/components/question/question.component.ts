@@ -1,3 +1,4 @@
+import { AudioService } from './../../../../services/audio.service';
 import { ScoreService } from './../../../../services/score.service';
 import {
   Component,
@@ -8,7 +9,6 @@ import {
   Output,
   EventEmitter,
 } from '@angular/core';
-import { AudioService } from '../../../../services/audio.service';
 import { SongsService } from '../../../../services/songs.service';
 import { Songs } from '../../../../models/songs.interface';
 import { Song } from '../../../../models/song.interface';
@@ -39,17 +39,25 @@ export class QuestionComponent implements OnInit, OnChanges {
 
   score: number = 0;
 
+  songUrl!: string;
+
   ROOT_URL = 'https://levi9-song-quiz.herokuapp.com/api/';
+
+  correctSongSrc!: string;
+  checkedSongUrl!: any;
 
   constructor(
     private songsService: SongsService,
-    public scoreService: ScoreService
+    public scoreService: ScoreService,
+    public audioService: AudioService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
     this.checkedSongIndex = -1;
     this.getCorrectSong();
     this.clickedSongsCount = 0;
+
+    this.correctSongSrc = `${this.ROOT_URL}${this.correctSong.audio}`;
   }
 
   ngOnInit(): void {
@@ -64,6 +72,10 @@ export class QuestionComponent implements OnInit, OnChanges {
   selectSong(id: string, i: number) {
     this.checkedSongId = id;
     this.checkedSongIndex = i;
+
+    this.checkedSongUrl = `${this.ROOT_URL}${
+      this.currentGenre.data[this.checkedSongIndex].audio
+    }`;
 
     this.clickedSongsCount += 1;
     this.scoreService.setClickedSongsCount(this.clickedSongsCount);

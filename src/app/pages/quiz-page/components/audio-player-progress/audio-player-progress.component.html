@@ -3,12 +3,12 @@
     #audioItem
     class="audio-item"
     controls
-    src="{{ ROOT_URL }}{{ correctSong.audio }}"
+    [src]="songUrl"
     style="display: none"
-    (loadeddata)="audioService.setAudio(audioItem)"
-    (timeupdate)="audioService.updateCurrentTime()"
-    (timeupdate)="audioService.updateTimeRange()"
-    (ended)="audioService.pauseAudio()"
+    (loadedmetadata)="audioService.setAudio(audioItem)"
+    (timeupdate)="audioService.updateCurrentTime(audioItem)"
+    (timeupdate)="audioService.updateTimeRange(audioItem)"
+    (ended)="audioService.endSong()"
   ></audio>
 
   <div class="progress__wrapper">
@@ -18,14 +18,13 @@
       name="audio"
       id="#audio"
       class="audio-progress"
-      value="{{audioService.percent}}"
-      (change)="audioService.updateTimeRange()"
-      [ngStyle]="{background: audioService.updateTimeRange()}"
+      value="{{ audioService.percent }}"
+      (change)="audioService.updateTimeRange(audioItem)"
+      [ngStyle]="{ background: audioService.updateTimeRange(audioItem) }"
       min="0"
       max="100"
       step="1"
-           
-      />
+    />
 
     <div class="audio-time">
       <div class="audio-time__current">{{ audioService.currentDuration }}</div>

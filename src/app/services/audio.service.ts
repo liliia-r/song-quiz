@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-
 export class AudioService {
   isPlaying: boolean = false;
 
@@ -16,13 +15,12 @@ export class AudioService {
   minutesTotal: string = '';
   secondsTotal: string = '';
 
-  percent: number = 0
+  percent: any = 0;
 
-  constructor() {
-    this.audio = new Audio();
-  }
+  constructor() {}
 
   setAudio(audio: HTMLAudioElement) {
+    this.percent = 0;
     this.audio = audio;
     this.totalDuration = this.getConvertedCurrentTime(audio.duration);
   }
@@ -37,11 +35,17 @@ export class AudioService {
     this.isPlaying = false;
   }
 
+  endSong(): void {
+    this.pauseAudio();
+    this.percent = 0;
+  }
+
   toggleAudio(): void {
     !this.isPlaying ? this.playAudio() : this.pauseAudio();
   }
 
   resetAudio() {
+    this.currentDuration = '00:00';
     this.pauseAudio();
     this.audio.load();
   }
@@ -59,16 +63,15 @@ export class AudioService {
     return `${this.minutes}:${this.seconds}`;
   }
 
-  updateCurrentTime() {
-    this.currentDuration = this.getConvertedCurrentTime(this.audio.currentTime);
+  updateCurrentTime(audio: HTMLAudioElement) {
+    this.currentDuration = this.getConvertedCurrentTime(audio.currentTime);
   }
 
-  updateTimeRange() {
-    this.percent = Math.round(
-      (this.audio.currentTime / this.audio.duration) * 100);
-    
- 
-    return `linear-gradient(270deg, rgba(27, 29, 49, 0.6) ${100 -this.percent }%, #7E55B3 0%, #7E55B3 99.44%)`
+  updateTimeRange(audio: HTMLAudioElement) {
+    this.percent = Math.round((audio.currentTime / audio.duration) * 100);
 
-      }
+    return `linear-gradient(270deg, rgba(27, 29, 49, 0.6) ${
+      100 - this.percent
+    }%, #7E55B3 0%, #7E55B3 99.44%)`;
+  }
 }

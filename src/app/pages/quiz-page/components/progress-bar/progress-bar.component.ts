@@ -13,17 +13,11 @@ export class ProgressBarComponent implements OnInit {
   @Input() currentGenre!: Songs;
   @Input() genreIndex!: number;
 
-  constructor(
-    private songsService: SongsService,
-    public scoreService: ScoreService
-  ) {}
+  genresPassed: Songs[] = [];
+
+  constructor(public scoreService: ScoreService) {}
 
   ngOnInit(): void {}
 
-  changeGenreColor(i: number) {
-    this.songsData.forEach((genre) => {
-      if (genre) {
-      }
-    });
-  }
+  enableProdMode(): void {}
 }

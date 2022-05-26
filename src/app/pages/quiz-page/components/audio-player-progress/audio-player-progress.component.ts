@@ -17,9 +17,7 @@ import { Song } from '../../../../models/song.interface';
 export class AudioPlayerProgressComponent
   implements OnInit, OnChanges, DoCheck {
   @Input() correctSong!: Song;
-
-  audioInputMaxValue!: number;
-  audioInputCurrentValue!: number;
+  @Input() songUrl!: string;
 
   ROOT_URL = 'https://levi9-song-quiz.herokuapp.com/api/';
 
@@ -30,5 +28,4 @@ export class AudioPlayerProgressComponent
   ngOnInit(): void {}
 
   ngDoCheck(): void {}
-
 }

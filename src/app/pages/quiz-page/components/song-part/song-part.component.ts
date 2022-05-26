@@ -6,10 +6,13 @@ import { AudioService } from './../../../../services/audio.service';
   selector: 'app-song-part',
   templateUrl: './song-part.component.html',
   styleUrls: ['./song-part.component.scss'],
-  providers: [AudioService]
+  providers: [AudioService],
 })
 export class SongPartComponent implements OnInit {
   @Input() currentGenre!: Song;
+  @Input() checkedSongUrl!: string;
+
+  ROOT_URL = 'https://levi9-song-quiz.herokuapp.com/api/';
 
   constructor(public audioService: AudioService) {}
 

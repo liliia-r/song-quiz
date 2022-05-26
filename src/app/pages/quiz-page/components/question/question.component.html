@@ -22,14 +22,9 @@
           <app-audio-player-button></app-audio-player-button></div
       ></ng-template>
 
-      <!-- <audio
-        class="audio-item"
-        controls
-        src="{{ ROOT_URL }}{{ correctSong.audio }}"
-      ></audio> -->
-
       <app-audio-player-progress
         [correctSong]="correctSong"
+        [songUrl]="correctSongSrc"
       ></app-audio-player-progress>
     </div>
 
@@ -56,6 +51,7 @@
     <app-song-part
       *ngIf="currentGenre.data[checkedSongIndex]; else unionImg"
       [currentGenre]="currentGenre.data[checkedSongIndex]"
+      [checkedSongUrl]="checkedSongUrl"
     ></app-song-part>
 
     <ng-template #unionImg>
