@@ -11,6 +11,7 @@ import { Song } from '../../models/song.interface';
   selector: 'app-quiz-page',
   templateUrl: './quiz-page.component.html',
   styleUrls: ['./quiz-page.component.scss'],
+  providers: [AudioService]
 })
 export class QuizPageComponent implements OnInit, OnDestroy {
   isLoading$!: Observable<boolean>;
@@ -46,10 +47,12 @@ export class QuizPageComponent implements OnInit, OnDestroy {
       this.genreIndex += 1;
       this.currentGenre = this.songsData[this.genreIndex];
       this.scoreService.setIsCorrectAnswerSelected(false);
+      this.audioService.resetAudio();
     }
   }
 
   finishQuiz() {
+    this.audioService.resetAudio();
     this.router.navigate(['/finish']);
   }
 

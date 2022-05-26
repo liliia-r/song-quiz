@@ -73,8 +73,6 @@ export class QuestionComponent implements OnInit, OnChanges {
     }
     this.clickedSongsIds.push(id);
 
-    console.log(this.clickedSongsCount);
-
     if (id === this.correctSong.id) {
       this.scorePoints = this.points[this.clickedSongsCount];
 

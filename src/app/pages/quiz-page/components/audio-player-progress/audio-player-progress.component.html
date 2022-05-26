@@ -1,5 +1,35 @@
-<input type="range" name="audio" id="#audio" class="audio-progress" />
-<div class="audio-time">
-  <div class="audio-time__current">00.00</div>
-  <div class="audio-time__total">10.00</div>
+<div class="audio__wrapper">
+  <audio
+    #audioItem
+    class="audio-item"
+    controls
+    src="{{ ROOT_URL }}{{ correctSong.audio }}"
+    style="display: none"
+    (loadeddata)="audioService.setAudio(audioItem)"
+    (timeupdate)="audioService.updateCurrentTime()"
+    (timeupdate)="audioService.updateTimeRange()"
+    (ended)="audioService.pauseAudio()"
+  ></audio>
+
+  <div class="progress__wrapper">
+    <input
+      #audioInput
+      type="range"
+      name="audio"
+      id="#audio"
+      class="audio-progress"
+      value="{{audioService.percent}}"
+      (change)="audioService.updateTimeRange()"
+      [ngStyle]="{background: audioService.updateTimeRange()}"
+      min="0"
+      max="100"
+      step="1"
+           
+      />
+
+    <div class="audio-time">
+      <div class="audio-time__current">{{ audioService.currentDuration }}</div>
+      <div class="audio-time__total">{{ audioService.totalDuration }}</div>
+    </div>
+  </div>
 </div>

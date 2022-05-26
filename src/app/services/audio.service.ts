@@ -1,41 +1,74 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
+
 export class AudioService {
-  song = '../../assets/Ennio Morricone.mp3';
+  isPlaying: boolean = false;
 
-  isPlay: boolean = false;
-  currentDuration: number = 0;
-  currentTime: number = 0;
-  audio!: any;
-  minutes!: number;
-  seconds!: number;
+  currentDuration: string = '00:00';
+  totalDuration: string = '00:30';
 
-  constructor() {}
+  audio!: HTMLAudioElement;
 
-  togglePlay() {
-    this.audio = document.querySelector('.audio-item');
+  minutes: string = '';
+  seconds: string = '';
 
-    if (!this.isPlay) this.audio.play();
-    else this.audio.pause();
-    this.isPlay = !this.isPlay;
+  minutesTotal: string = '';
+  secondsTotal: string = '';
+
+  percent: number = 0
+
+  constructor() {
+    this.audio = new Audio();
   }
 
-  // updateTimeProgress() {
-  //   this.minutes = Math.floor(this.audio.currentTime / 60);
-  //   this.seconds = Math.floor(this.audio.currentTime % 60);
-  //   if (this.seconds < 10) {
-  //     this.seconds = `0${this.seconds}`;
-  //   }
-  //   if (seconds) {
-  //     currentSound.textContent = `${minutes}:${seconds}`;
-  //   }
+  setAudio(audio: HTMLAudioElement) {
+    this.audio = audio;
+    this.totalDuration = this.getConvertedCurrentTime(audio.duration);
+  }
 
-  //   progressTime.value = (audio.currentTime / audio.duration) * 100;
+  playAudio(): void {
+    this.audio.play();
+    this.isPlaying = true;
+  }
 
-  //   audio.currentTime =
-  //     (progressTime.offsetX / progressTime.offsetWidth) * audio.duration;
-  // }
+  pauseAudio(): void {
+    this.audio.pause();
+    this.isPlaying = false;
+  }
+
+  toggleAudio(): void {
+    !this.isPlaying ? this.playAudio() : this.pauseAudio();
+  }
+
+  resetAudio() {
+    this.pauseAudio();
+    this.audio.load();
+  }
+
+  getConvertedCurrentTime(time: number) {
+    this.minutes = String(Math.floor(time / 60));
+    this.seconds = String(Math.floor(time % 60));
+    if (+this.minutes < 10) {
+      this.minutes = `0${this.minutes}`;
+    }
+    if (+this.seconds < 10) {
+      this.seconds = `0${this.seconds}`;
+    }
+
+    return `${this.minutes}:${this.seconds}`;
+  }
+
+  updateCurrentTime() {
+    this.currentDuration = this.getConvertedCurrentTime(this.audio.currentTime);
+  }
+
+  updateTimeRange() {
+    this.percent = Math.round(
+      (this.audio.currentTime / this.audio.duration) * 100);
+    
+ 
+    return `linear-gradient(270deg, rgba(27, 29, 49, 0.6) ${100 -this.percent }%, #7E55B3 0%, #7E55B3 99.44%)`
+
+      }
 }

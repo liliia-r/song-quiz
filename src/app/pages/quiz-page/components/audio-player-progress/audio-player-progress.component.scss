@@ -1,11 +1,28 @@
 @use "../../../../../scss/abstracts/variables" as variable;
+@use "../../../../../scss/abstracts/mixins" as mixin;
+
+:host {
+  width: 70%;
+
+  @include mixin.respond(tab-land) {
+    width: 85%;
+  }
+}
 
 .audio-progress {
-  width: 100%;
+  background: rgba(27, 29, 49, 0.9);
   height: 0.5rem;
   border-radius: 5px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   -webkit-appearance: none;
+  margin-top: 2rem;
+  width: 100%;
+  // &::-webkit-slider-runnable-track {
+  //     -webkit-appearance: none;
+  //     background: linear-gradient(270deg, #7E55B3 0%, #A769C4 100.02%);
+  //     height: 0.6rem;
+  //     border-radius: 5px;
+  //     }
 
   &::-webkit-slider-thumb {
     -webkit-appearance: none;

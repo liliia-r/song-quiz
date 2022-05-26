@@ -1,61 +1,11 @@
 @use "../../../../../scss/abstracts/variables" as variable;
-
-.audioplayer {
-  display: flex;
-  align-items: center;
-  width: 41.5rem;
-  height: 12rem;
-  background: variable.$violet-light;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-// .button-wrapper {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   position: absolute;
-//   background: transparent;
-//   border-radius: 50%;
-//   width: 6rem;
-//   height: 6rem;
-//   cursor: pointer;
-
-//   &:hover .audioplayer__button {
-//     transform: scale(1.2);
-//     opacity: 1;
-//   }
-// }
-
-// .button-bg {
-//   width: 9rem;
-//   height: 9rem;
-//   margin-right: 2rem;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-size: cover;
-//   background: linear-gradient(
-//     148.42deg,
-//     #ec1919 -0.53%,
-//     #d1c234 28.02%,
-//     #d134a5 60.47%,
-//     #3734d1 90.32%,
-//     #23b632 124.06%
-//   );
-//   border-radius: 5px;
-//   outline: none;
-// }
+@use "../../../../../scss/abstracts/mixins" as mixin;
 
 .button-wrapper {
+  @include mixin.absCenter;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  transform: translate(-50%, -50%);
   background: transparent;
   border-radius: 50%;
   width: 6rem;
@@ -69,7 +19,6 @@
 }
 
 .audioplayer__button {
-  position: absolute;
   background: variable.$white-color;
   border-radius: 50%;
   width: 4.7rem;

@@ -15,21 +15,22 @@
             : 'none'
         }"
       >
-        <!-- <app-audio-player-button></app-audio-player-button> -->
+        <app-audio-player-button></app-audio-player-button>
       </div>
       <ng-template #linearGradient
-        ><div class="button-bg button-bg__main"></div
+        ><div class="button-bg button-bg__main">
+          <app-audio-player-button></app-audio-player-button></div
       ></ng-template>
 
-      <audio
+      <!-- <audio
         class="audio-item"
         controls
         src="{{ ROOT_URL }}{{ correctSong.audio }}"
-      ></audio>
+      ></audio> -->
 
-      <!-- <div class="audio__wrapper">
-        <app-audio-player-progress></app-audio-player-progress>
-      </div> -->
+      <app-audio-player-progress
+        [correctSong]="correctSong"
+      ></app-audio-player-progress>
     </div>
 
     <div

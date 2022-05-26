@@ -12,18 +12,28 @@
     />
   </div>
 
-  <div class="song__audio">
+  <div class="audioplayer">
+    <div class="song__audio">
+      <div class="play-btn-wrap">
+        <app-audio-player-button></app-audio-player-button>
+      </div>
+      <div class="play-progress-wrap">
+        <app-audio-player-progress></app-audio-player-progress>
+      </div>
+    </div>
+    <!-- <div class="song__audio">
     <audio
+    #audioItemDescription
       class="song__audio-content"
       controls
       src="https://levi9-song-quiz.herokuapp.com/api/{{ currentGenre.audio }}"
+      (loadeddata)="audioService.setAudio(audioItemDescription)"
+    (timeupdate)="audioService.updateCurrentTime()"
+    (timeupdate)="audioService.updateTimeRange()"
+    (ended)="audioService.pauseAudio()"
     ></audio>
-  </div>
-
-  <!-- <div class="audioplayer__right">
-    <app-audio-player-button></app-audio-player-button>
-    <app-audio-player-progress></app-audio-player-progress>
   </div> -->
+  </div>
 
   <div class="song__description">
     <p class="song__description-content">{{ currentGenre.description }}</p>
